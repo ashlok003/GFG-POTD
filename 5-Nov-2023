@@ -1,0 +1,29 @@
+class Solution {
+    public int[] topK(int[] nums, int k) {
+        // Code here
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int num : nums) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> {
+            int A = frequencyMap.get(a);
+            int B = frequencyMap.get(b);
+            if (A != B) {
+                return B - A; 
+            } else {
+                return b - a; 
+            }
+        });
+
+        for (int num : frequencyMap.keySet()) {
+            maxHeap.offer(num);
+        }
+
+        int[] result = new int[k];
+        for (int i = 0; i < k; i++) {
+            result[i] = maxHeap.poll();
+        }
+
+        return result;
+    }
+}
