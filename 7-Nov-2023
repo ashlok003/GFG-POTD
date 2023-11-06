@@ -1,0 +1,23 @@
+class Solution
+{
+    static ArrayList<Integer> sumTriangles(int matrix[][], int N)
+    {
+        // code here
+        int upperSum = 0, lowerSum = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (i <= j) {
+                    upperSum += matrix[i][j];
+                }
+                if (i >= j) {
+                    lowerSum += matrix[i][j];
+                }
+            }
+        }
+
+        ArrayList<Integer> result = new ArrayList<>();
+        result.add(upperSum);
+        result.add(lowerSum);
+        return result;
+    }
+}
