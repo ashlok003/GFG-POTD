@@ -1,0 +1,41 @@
+class Solution{
+    boolean isValid(int row, int col, int n, int m) {
+        return row >= 0 && row < n && col >= 0 && col < m;
+    }
+
+
+     List<Integer> matrixSum(int n, int m, int mat[][], int q, int queries[][])
+    {
+      int[] dx1 = {-1, -1, -1, 0, 1, 1, 1, 0};
+        int[] dy1 = {-1, 0, 1, 1, 1, 0, -1, -1};
+
+        int[] dx2 = {-2, -2, -2, -2, -2, -1, 0, 1, 2, 2, 2, 2, 2, 1, 0, -1};
+        int[] dy2 = {-2, -1, 0, 1, 2, 2, 2, 2, 2, 1, 0, -1, -2, -2, -2, -2};
+
+        List<Integer> ans = new ArrayList<>();
+
+        for (int i = 0; i < q; i++) {
+            int sum = 0, row = queries[i][1], col = queries[i][2];
+
+            if (queries[i][0] == 1) {
+                for (int j = 0; j < 8; j++) {
+                    int rowIndex = row + dx1[j];
+                    int colIndex = col + dy1[j];
+
+                    if (isValid(rowIndex, colIndex, n, m))
+                        sum += mat[rowIndex][colIndex];
+                }
+            } else {
+                for (int j = 0; j < 16; j++) {
+                    int rowIndex = row + dx2[j];
+                    int colIndex = col + dy2[j];
+
+                    if (isValid(rowIndex, colIndex, n, m))
+                        sum += mat[rowIndex][colIndex];
+                }
+            }
+            ans.add(sum);
+        }
+        return ans;
+    }
+}
