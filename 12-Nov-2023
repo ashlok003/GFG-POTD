@@ -1,0 +1,25 @@
+class Solution
+{
+    //Function to check if a string can be obtained by rotating
+    //another string by exactly 2 places.
+    public static boolean isRotated(String a, String b)
+    {
+        // Your code here
+        if (a.length() != b.length()) {
+            return false;
+        }
+
+        int len = a.length();
+
+        String clockwiseRotation = b.substring(len - 2) + b.substring(0, len - 2);
+        if (a.equals(clockwiseRotation)) {
+            return true;
+        }
+        String antiClockwiseRotation = b.substring(2) + b.substring(0, 2);
+        if (a.equals(antiClockwiseRotation)) {
+            return true;
+        }
+        return false;
+    }
+    
+}
