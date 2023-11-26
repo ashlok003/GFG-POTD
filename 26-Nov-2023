@@ -1,0 +1,22 @@
+class Solution{
+    private List<Integer> a = new ArrayList<>();
+    public List<Integer> pattern(int N){
+        // code here
+        a.add(N);
+        patMinus(N);
+        patPlus(a.get(a.size() - 1), N);
+        return a;
+    }
+    private void patMinus(int n) {
+        if (n <= 0)
+            return;
+        a.add(n - 5);
+        patMinus(n - 5);
+    }
+    private void patPlus(int val, int n) {
+        if (n == val)
+            return;
+        a.add(val + 5);
+        patPlus(val + 5, n);
+    }
+}
