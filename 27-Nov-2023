@@ -1,0 +1,38 @@
+class Solution {
+    // Function to detect cycle using DSU in an undirected graph.
+    public int detectCycle(int V, ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+        int[] parent = new int[V];
+        Arrays.fill(parent, -1);
+
+        for (int i = 0; i < V; i++) {
+            for (int j : adj.get(i)) {
+                int x = find(parent, i);
+                int y = find(parent, j);
+
+                if (x == y)
+                    return 1;
+
+                union(parent, x, y);
+            }
+        }
+
+        return 0;
+    }
+
+    // Helper function to find the set to which a node belongs using DSU.
+    private int find(int[] parent, int node) {
+        if (parent[node] == -1)
+            return node;
+        return find(parent, parent[node]);
+    }
+
+    // Helper function to perform union operation in DSU.
+    private void union(int[] parent, int x, int y) {
+        int xRoot = find(parent, x);
+        int yRoot = find(parent, y);
+
+        if (xRoot != yRoot)
+            parent[xRoot] = yRoot;
+    }
+}
