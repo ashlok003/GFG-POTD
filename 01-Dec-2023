@@ -1,0 +1,15 @@
+class Solution
+{
+    public static boolean isDeadEnd(Node root)
+    {
+        //Add your code here.
+         return isDeadEndHelper(root, 1, Integer.MAX_VALUE);
+    }
+    private static boolean isDeadEndHelper(Node node, int min, int max) {
+        if(node==null) return false;
+        if(min==max) return true;
+        boolean leftDeadEnd=isDeadEndHelper(node.left, min, node.data-1);
+        boolean rightDeadEnd=isDeadEndHelper(node.right, node.data+1, max);
+        return leftDeadEnd || rightDeadEnd;
+    }
+}
