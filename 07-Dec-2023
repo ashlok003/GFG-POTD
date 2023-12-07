@@ -1,0 +1,25 @@
+class Solution{
+    
+    static long countSubarrays(int a[], int n, int L, int R)  
+    { 
+        // Complete the function
+        long count = 0;
+        long result = 0;
+        int left = 0;
+        int right = 0;
+
+        while (right < a.length) {
+            if (a[right] >= L && a[right] <= R) {
+                count = right - left + 1;
+                result += count;
+            } else if (a[right] < L) {
+                result += count;
+            } else {
+                left = right + 1;
+                count = 0;
+            }
+            right++;
+        }
+        return   result;
+    } 
+}
