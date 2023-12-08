@@ -1,0 +1,28 @@
+class Solution
+{
+    private boolean prime(int n){
+        if(n==0 || n==1)
+            return false;
+        for(int i=2;i<=n/2;i++){
+            if(n%i == 0)
+                return false;
+        }
+        return true;
+    }
+    public int minNumber(int arr[], int N)
+    {
+        int sum = 0;
+        for(int i: arr)
+            sum += i;
+        int preSum = sum;
+        if(prime(sum))
+            return 0;
+        sum += 1;
+        while(true){
+            if(prime(sum))
+                break;
+            sum++;
+        }
+        return sum - preSum;
+    }
+}
