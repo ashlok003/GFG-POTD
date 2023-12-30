@@ -4,7 +4,7 @@ class Solution
     public int countOccurence(int[] arr, int n, int k) 
     {
         // your code here,return the answer
-         HashMap<Integer,Integer> h=new HashMap<>();
+        HashMap<Integer,Integer> h=new HashMap<>();
         int ans=0;
         for(int i:arr){
                 h.put(i,h.getOrDefault(i,0)+1);
